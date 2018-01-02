@@ -8,5 +8,26 @@
     <body>
         <!-- willingly not using canvas because I can't be assed -->
         <div id="canvas"></div>
+
+        <div id="params">
+            <form name="params">
+                <h3>Preset seed</h3>
+                <input type="radio" name="preset" id="pulsar" value="pulsar"> <label for="pulsar">Pulsar</label> <br/>
+                <input type="radio" name="preset" id="glider" value="glider"> <label for="glider">Glider</label> <br/>
+                <input type="radio" name="preset" id="glidergun" value="glidergun"> <label for="glidergun">Glider gun</label> <br/>
+                <input type="radio" name="preset" id="lwss" value="lwss"> <label for="lwss">LWSS (LightWeight SpaceShip)</label> <br/>
+                <input type="radio" name="preset" id="none" value="none" checked="checked"> <label for="none">None</label>
+        
+                <h3>Grid size</h3>
+                <label for="grid_w">Width: &nbsp;</label><input type="number" id="grid_w" name="grid_w" value="100"> <label for="grid_w">cells</label>
+                <br/>
+                <label for="grid_h">Height: </label><input type="number" id="grid_h" name="grid_h" value="50"> <label for="grid_h">cells</label>
+    
+                <h3>Tick rate</h3>
+                <label for="tick_delay">One step every</label> <input type="number" id="tick_delay" name="tick_delay" value="150"> <label for="tick_delay">milliseconds</label> <br/>
+    
+                <input id="refreshConfig" type="button" value="Apply">
+            </form>
+        </div>
     </body>
 </html>
