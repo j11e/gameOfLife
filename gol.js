@@ -183,6 +183,12 @@
             document.getElementById("resume").removeEventListener("click", this.resume);
             document.getElementById("resume").addEventListener("click", this.resume);
 
+            document.getElementById("save").removeEventListener("click", this.save);
+            document.getElementById("save").addEventListener("click", this.save);
+
+            document.getElementById("restore").removeEventListener("click", this.restore);
+            document.getElementById("restore").addEventListener("click", this.restore);
+
             // step 0: read config 
             this.refreshConfig();
 
@@ -277,6 +283,17 @@
             }
         },
 
+        // save the current state, to be restorable by restore()
+        save: function() {
+            this._save = this._grid.slice();
+        },
+
+        // restore the saved state, or an empty grid if no saved state
+        restore: function() {
+            this._grid = this._save || this._getEmptyGrid();
+            this.paint();
+        },
+
         // compute the next state from the current one, then paint()
         step: function() {
             var newGrid = this._getEmptyGrid();
@@ -334,6 +351,8 @@
     Gol.pause = Gol.pause.bind(Gol);
     Gol.resume = Gol.resume.bind(Gol);
     Gol.step = Gol.step.bind(Gol);
+    Gol.save = Gol.save.bind(Gol);
+    Gol.restore = Gol.restore.bind(Gol);
 
     window.onload = Gol.start;
 
