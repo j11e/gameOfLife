@@ -284,7 +284,7 @@
         // self-explanatory
         resume: function() {
             this.pause(); // prevent multiple intervals
-            this._tickInterval = setInterval(this.step, this.config.TIME_INTERVAL);
+            this._tickInterval = setInterval(this.tick, this.config.TIME_INTERVAL);
         },
 
         // update all cells' DOM node classes to reflect the current state
@@ -318,7 +318,7 @@
         },
 
         // compute the next state from the current one, then paint()
-        step: function() {
+        tick: function() {
             var newGrid = this._getEmptyGrid();
 
             for (var i = 0; i < this.config.GRID_HEIGHT; i++) {
@@ -375,7 +375,7 @@
     Gol.start = Gol.start.bind(Gol);
     Gol.pause = Gol.pause.bind(Gol);
     Gol.resume = Gol.resume.bind(Gol);
-    Gol.step = Gol.step.bind(Gol);
+    Gol.tick = Gol.tick.bind(Gol);
     Gol.save = Gol.save.bind(Gol);
     Gol.restore = Gol.restore.bind(Gol);
     Gol.import = Gol.import.bind(Gol);
