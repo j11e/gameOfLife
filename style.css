@@ -1,11 +1,14 @@
-#canvas {
+#canvas, #params, #importexport {
     border: 1px solid black;
+    float: left;
+    margin-right: 10px;
+}
+
+#counterContainer {
     display: inline-block;
 }
 
 #params, #importexport {
-    border: 1px solid black;
-    display: inline-block;
     padding: 5px;
     padding-bottom: 15px;
 }
@@ -26,4 +29,8 @@ uncomment this for the grid to be visible
 
 .dead {
     background-color: white;
+}
+
+div, br, strong {
+    display: inline-block;
 }

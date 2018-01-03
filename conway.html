@@ -6,14 +6,15 @@
         <script src="gol.js"></script>
     </head>
     <body>
+
         <strong>Click on the grid to make a dead cell alive or vice-versa. Better pause the game first!</strong>
-        
+        <br/>
+        <div id="counterContainer">Current generation: <span id="counter"></span></div>
         <br/>
 
         <!-- willingly not using canvas because I can't be assed -->
         <div id="canvas"></div>
-        <div>Current generation: <span id="counter"></span></div>
-
+        
         <div id="params">
             <form name="params">
                 <h3>Preset seed</h3>
@@ -41,7 +42,7 @@
                 <input style="margin-top: 10px" id="refreshConfig" type="button" value="Apply config and reset">
             </form>
         </div>
-
+        
         <div id="importexport">
             <strong>Paste a state below to apply it, or copy the exported state to share it</strong>
             <br/>
@@ -49,10 +50,8 @@
             <br/>
             <input type="button" id="export" value="Export current state">
             <input type="button" id="import" value="Import this state">
-
         </div>
 
-        <br/>
         
     </body>
 </html>
