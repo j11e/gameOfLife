@@ -170,7 +170,7 @@
         },
 
 
-        // initialize this._grid
+        // self-explanatory
         init: function() {
             console.log("initing game");
 
@@ -256,10 +256,12 @@
             this.resume();
         },
 
+        // self-explanatory
         pause: function() {
             clearInterval(this._tickInterval);
         },
 
+        // self-explanatory
         resume: function() {
             this.pause(); // prevent multiple intervals
             this._tickInterval = setInterval(this.step, this.config.TIME_INTERVAL);
@@ -301,6 +303,7 @@
             this.paint();
         },
 
+        // self-explanatory
         refreshConfig: function() {
             switch (document.forms["params"].preset.value) {
                 case "pulsar":
