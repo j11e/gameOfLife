@@ -244,7 +244,8 @@
                     cell.style.height = this.config.CELL_WIDTH;
                     cell.style.display = "inline-block";
                     
-                    cell.addEventListener("mouseover", this._getToggleEventHandler(i,j));
+                    cell.addEventListener("mouseover", this._getToggleEventHandler(i,j, true));
+                    cell.addEventListener("click", this._getToggleEventHandler(i,j, false));
                     
                     this._canvas.appendChild(cell);
                 }
@@ -255,10 +256,11 @@
 
         // returns a toggle event handler function for the cell (i, j)
         // makes the clicked cell go from alive to dead or vice-versa
-        _getToggleEventHandler: function(i,j) {
+        // @param paintMode: keep mouse button clicked and move to paint, or click to toggle
+        _getToggleEventHandler: function(i,j, paintMode) {
             var self = this;
             return function() {
-                if (window.mousedown == 1) {
+                if ((paintMode && window.mousedown == 1) || !paintMode) {
                     self._grid[i][j] = (self._grid[i][j] + 1) % 2;
     
                     this.className = (this.className == "dead") ? "alive" : "dead";
