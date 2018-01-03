@@ -177,6 +177,12 @@
             document.getElementById("refreshConfig").removeEventListener("click", this.start);
             document.getElementById("refreshConfig").addEventListener("click", this.start);
 
+            document.getElementById("pause").removeEventListener("click", this.pause);
+            document.getElementById("pause").addEventListener("click", this.pause);
+
+            document.getElementById("resume").removeEventListener("click", this.resume);
+            document.getElementById("resume").addEventListener("click", this.resume);
+
             // step 0: read config 
             this.refreshConfig();
 
@@ -217,6 +223,9 @@
                     cell.style.width = this.config.CELL_WIDTH;
                     cell.style.height = this.config.CELL_WIDTH;
                     cell.style.display = "inline-block";
+                    
+                    cell.addEventListener("click", this._getToggleEventHandler(i,j));
+                    
                     this._canvas.appendChild(cell);
                 }
             }
@@ -224,14 +233,35 @@
             console.log("done initing game");
         },
 
+        // returns a toggle event handler function for the cell (i, j)
+        // makes the clicked cell go from alive to dead or vice-versa
+        _getToggleEventHandler: function(i,j) {
+            var self = this;
+            return function() {
+                self._grid[i][j] = (self._grid[i][j] + 1) % 2;
+
+                this.className = (this.className == "dead") ? "alive" : "dead";
+            };
+        },
+
         // start the game!
         start: function() {
             console.log("Starting game...");
+            this.pause();
+
             this.init();
 
             this.paint();
 
+            this.resume();
+        },
+
+        pause: function() {
             clearInterval(this._tickInterval);
+        },
+
+        resume: function() {
+            this.pause(); // prevent multiple intervals
             this._tickInterval = setInterval(this.step, this.config.TIME_INTERVAL);
         },
 
@@ -298,6 +328,8 @@
 
 
     Gol.start = Gol.start.bind(Gol);
+    Gol.pause = Gol.pause.bind(Gol);
+    Gol.resume = Gol.resume.bind(Gol);
     Gol.step = Gol.step.bind(Gol);
 
     window.onload = Gol.start;
