@@ -244,7 +244,7 @@
                     cell.style.height = this.config.CELL_WIDTH;
                     cell.style.display = "inline-block";
                     
-                    cell.addEventListener("click", this._getToggleEventHandler(i,j));
+                    cell.addEventListener("mouseover", this._getToggleEventHandler(i,j));
                     
                     this._canvas.appendChild(cell);
                 }
@@ -258,9 +258,11 @@
         _getToggleEventHandler: function(i,j) {
             var self = this;
             return function() {
-                self._grid[i][j] = (self._grid[i][j] + 1) % 2;
-
-                this.className = (this.className == "dead") ? "alive" : "dead";
+                if (window.mousedown == 1) {
+                    self._grid[i][j] = (self._grid[i][j] + 1) % 2;
+    
+                    this.className = (this.className == "dead") ? "alive" : "dead";
+                }
             };
         },
 
@@ -382,6 +384,12 @@
     Gol.export = Gol.export.bind(Gol);
 
     window.onload = Gol.start;
+    document.onmousedown = function() {
+        window.mousedown = 1;
+    }
+    document.onmouseup = function() {
+        window.mousedown = 0;
+    }
 
     console.log("Game created");
 })();
