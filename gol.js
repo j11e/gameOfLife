@@ -189,6 +189,12 @@
             document.getElementById("restore").removeEventListener("click", this.restore);
             document.getElementById("restore").addEventListener("click", this.restore);
 
+            document.getElementById("import").removeEventListener("click", this.import);
+            document.getElementById("import").addEventListener("click", this.import);
+
+            document.getElementById("export").removeEventListener("click", this.export);
+            document.getElementById("export").addEventListener("click", this.export);
+
             // step 0: read config 
             this.refreshConfig();
 
@@ -294,6 +300,15 @@
             this.paint();
         },
 
+        import: function() {
+            this._grid = JSON.parse(document.getElementById('seed').value);
+            this.paint();
+        },
+
+        export: function() {
+            document.getElementById('seed').innerText = JSON.stringify(this._grid);
+        },
+
         // compute the next state from the current one, then paint()
         step: function() {
             var newGrid = this._getEmptyGrid();
@@ -353,6 +368,8 @@
     Gol.step = Gol.step.bind(Gol);
     Gol.save = Gol.save.bind(Gol);
     Gol.restore = Gol.restore.bind(Gol);
+    Gol.import = Gol.import.bind(Gol);
+    Gol.export = Gol.export.bind(Gol);
 
     window.onload = Gol.start;
 

@@ -3,7 +3,7 @@
     display: inline-block;
 }
 
-#params {
+#params, #importexport {
     border: 1px solid black;
     display: inline-block;
     padding: 5px;
