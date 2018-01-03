@@ -27,6 +27,12 @@
         // reference to the DOM element where the game is displayed
         _canvas: null,
 
+        // reference to the generation counter display DOM element
+        _counterElem: null,
+
+        // count ticks since last reset
+        _counter: null,
+
         // interval reference from setInterval
         _tickInterval: null,
 
@@ -197,6 +203,8 @@
 
             // step 0: read config 
             this.refreshConfig();
+            this._counter = 0;
+            this._counterElem = document.getElementById("counter");
 
             // step 1: initialize the grid state from SEED (if given), or
             // create an empty one
@@ -306,7 +314,7 @@
         },
 
         export: function() {
-            document.getElementById('seed').innerText = JSON.stringify(this._grid);
+            document.getElementById('seed').value = JSON.stringify(this._grid);
         },
 
         // compute the next state from the current one, then paint()
@@ -331,6 +339,8 @@
             }
 
             this._grid = newGrid;
+            this._counter++;
+            this._counterElem.innerText = this._counter;
 
             this.paint();
         },
